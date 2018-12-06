@@ -23,7 +23,7 @@ void SRRdtReceiver::receive(Packet &packet)
 	if (checkSum == packet.checksum)//not corrupt
 	{
 		pUtils->printPacket("接收方收到未损报文", packet);
-		if (base + N <= seqnum && (packet.seqnum >= base || packet.seqnum < base + N)
+		if (base + N <= seqnum && (packet.seqnum >= base && packet.seqnum < base + N)
 			|| base + N > seqnum && (packet.seqnum >= base || packet.seqnum < (base + N) % seqnum))
 		{
 			pUtils->printPacket("发送方的报文在窗口内", packet);
